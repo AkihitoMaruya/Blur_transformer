@@ -1,0 +1,32 @@
+MODEL:
+  TYPE: vit
+  NAME: simmim_pretrain
+  DROP_PATH_RATE: 0.0
+  VIT:
+    PATCH_SIZE: 4
+    EMBED_DIM: 384
+    DEPTH: 2
+    NUM_HEADS: 12
+    USE_APE: False
+    USE_RPB: False
+    USE_SHARED_RPB: True
+    USE_MEAN_POOLING: False
+DATA:
+  IMG_SIZE: 32
+  MASK_PATCH_SIZE: 4
+  MASK_RATIO: 0.6
+TRAIN:
+  EPOCHS: 200
+  WARMUP_EPOCHS: 7
+  BASE_LR: 3e-4
+  WARMUP_LR: 3.15e-6
+  MIN_LR: 3e-7
+  WEIGHT_DECAY: 0.02
+  LAYER_DECAY: 1.0
+  LR_SCHEDULER:
+    NAME: 'multistep'
+    GAMMA: 0.1
+    MULTISTEPS: [175,]
+PRINT_FREQ: 100
+SAVE_FREQ: 5
+TAG: simmim_pretrain__vit_d2__cifar10__200ep
